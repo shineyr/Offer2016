@@ -40,7 +40,7 @@ public:
 
 		for (int i = 4; i <= n; ++i)
 		{
-			nums[n] = nums[n - 1] + nums[n - 2] + nums[n - 3];
+			nums[i] = nums[i - 1] + nums[i - 2] + nums[i - 3];
 		}//for
 		return nums[n];
 	}
@@ -50,7 +50,7 @@ int main()
 {
 	Solution s;
 	cout << s.countSteps1(6) << endl;
-	cout << s.countSteps1(6) << endl;
+	cout << s.countSteps(6) << endl;
 	system("pause");
 	return 0;
 }
