@@ -37,12 +37,12 @@ public:
 		nums[1] = 1;
 		nums[2] = 2;
 		nums[3] = nums[1] + nums[2] + 1;
-		if (nums[n] != 0)
-			return nums[n];
-		else
+
+		for (int i = 4; i <= n; ++i)
 		{
-			return nums[n - 1] + nums[n - 2] + nums[n - 3];
-		}//else
+			nums[n] = nums[n - 1] + nums[n - 2] + nums[n - 3];
+		}//for
+		return nums[n];
 	}
 };
 
