@@ -3,7 +3,6 @@
 */
 
 #include <iostream>
-#include <cstdlib>
 #include <string>
 #include <unordered_set>
 
@@ -16,14 +15,14 @@ public:
 	 * （2）在第二个左括号之后插入一对括号
 	 * （3）在字符串开头插入一对括号
 	 */
-	vector<string> generateParens(int n)
+	vector<string> generateParens1(int n)
 	{
 		unordered_set<string> us;
 		if (0 == n)
 			us.insert("");
 		else
 		{
-			vector<string> tmp = generateParens(n - 1);
+			vector<string> tmp = generateParens1(n - 1);
 			auto iter = tmp.begin();
 			for (; iter != tmp.end(); ++iter)
 			{
@@ -45,6 +44,44 @@ public:
 		}//else
 		return vector<string>(us.begin(), us.end());
 	}
+	/*
+	* 方法二：从头开始构造字符串，从而避免出现重复。在这个过程中，逐一加入左括号或者右括号，只要字符串依然有效！
+	* 判断有效：（1）只要左括号还没用完，就可以插入左括号；（2）只有合法，也就是右括号个数小于等于左括号就可以插入右括号。
+	*/
+	vector<string> generateParens(int n)
+	{
+		vector<string> ret;
+		string str(2*n,' ');
+		addParen(ret, n, n, str, 0);
+
+		return ret;
+	}
+	void addParen(vector<string> &ret, int leftRem, int rightRem, string str, int count)
+	{
+		//如果可添加左括号数小于0 或者可添加右括号数小于左括号说明目前构造的字符串非法
+		if (leftRem < 0 || rightRem < leftRem)
+			return;
+
+		/*无括号可添加，得到一个合法组合*/
+		if (leftRem == 0 && rightRem == 0)
+		{
+			ret.push_back(str);
+		}//else
+		else{
+			/*还有左括号可用，加入一个左括号*/
+			if (leftRem > 0)
+			{
+				str[count] = '(';
+				addParen(ret, leftRem - 1, rightRem, str, count + 1);
+			}//if
+			/*若字符串有效，加入一个右括号*/
+			if (rightRem > leftRem)
+			{
+				str[count] = ')';
+				addParen(ret, leftRem, rightRem - 1, str, count + 1);
+			}//if
+		}//else
+	}	
 };
 
 int main()
