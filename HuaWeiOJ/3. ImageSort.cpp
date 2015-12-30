@@ -45,7 +45,6 @@ int main()
 		}//while
 		str[j + 1] = c;
 	}//for
-
 	printf("%s\n", str);
 	system("pause");
 }
