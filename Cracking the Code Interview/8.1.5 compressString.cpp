@@ -27,7 +27,7 @@ public:
 			if (str[i] != cur)
 			{
 				s += cur;
-				s = s + char(count + '0');
+				s = s + intToString(count);
 
 				cur = str[i];
 				count = 1;
@@ -37,11 +37,24 @@ public:
 		}//for
 		//链接末尾字符
 		s += cur;
-		s = s + char(count + '0');
+		s = s + intToString(count);
 
 		if (s.length() > len)
 			return str;
 		return s;
+	}
+
+	string intToString(int count)
+	{
+		string ret = "";
+		while (count)
+		{
+			char c = count % 10 + '0';
+			ret += c;
+			count /= 10;
+		}//while
+		reverse(ret.begin(), ret.end());
+		return ret;
 	}
 };
 
