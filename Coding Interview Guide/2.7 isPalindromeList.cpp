@@ -1,7 +1,7 @@
 /*
-ÅÐ¶ÏÒ»¸öÁ´±íÊÇ·ñÎª»ØÎÄ½á¹¹£»
-½ø½×£º
-Èç¹ûÁ´±í³¤¶ÈÎªN£¬Ê±¼ä¸´ÔÓ¶ÈÎªO(N),¶îÍâ¿Õ¼ä¸´ÔÓ¶È´ïµ½O(1)
+åˆ¤æ–­ä¸€ä¸ªé“¾è¡¨æ˜¯å¦ä¸ºå›žæ–‡ç»“æž„ï¼›
+è¿›é˜¶ï¼š
+å¦‚æžœé“¾è¡¨é•¿åº¦ä¸ºNï¼Œæ—¶é—´å¤æ‚åº¦ä¸ºO(N),é¢å¤–ç©ºé—´å¤æ‚åº¦è¾¾åˆ°O(1)
 */
 
 
@@ -19,16 +19,12 @@ struct ListNode{
 ListNode *insert(ListNode *head, int val)
 {
 	if (!head)
-	{
 		head = new ListNode(val);
-		head->next = head;
-	}
 	else{
 		ListNode *p = head;
-		while (p->next != head)
+		while (p->next)
 			p = p->next;
 		p->next = new ListNode(val);
-		p->next->next = head;
 	}//else
 	return head;
 }
@@ -39,16 +35,16 @@ void display(ListNode *head)
 		cout << endl;
 	else{
 		ListNode *p = head;
-		while (p->next != head)
+		while (p->next)
 		{
-			cout << p->val << "¡ª>";
+			cout << p->val << "â€”>";
 			p = p->next;
 		}//while
 		cout << p->val << endl;
 	}//else
 }
 
-/*²ÉÓÃ¸¨ÖúÕ»´æ´¢Á´±íËùÓÐ½Úµã*/
+/*é‡‡ç”¨è¾…åŠ©æ ˆå­˜å‚¨é“¾è¡¨æ‰€æœ‰èŠ‚ç‚¹*/
 bool isPalindrom1(ListNode *head)
 {
 	if (!head)
@@ -72,7 +68,7 @@ bool isPalindrom1(ListNode *head)
 	return true;
 }
 
-/*·½·¨¶þ£º²ÉÓÃ¸¨ÖúÕ»´æ´¢Á´±íµÄÓÒ°ë²¿·Ö*/
+/*æ–¹æ³•äºŒï¼šé‡‡ç”¨è¾…åŠ©æ ˆå­˜å‚¨é“¾è¡¨çš„å³åŠéƒ¨åˆ†*/
 bool isPalindrom2(ListNode *head)
 {
 	if (!head)
@@ -86,7 +82,7 @@ bool isPalindrom2(ListNode *head)
 		fast = fast->next->next;
 	}//while
 	
-	/*´ËÊ±fastÖ¸ÏòÓÒ°ë²¿·ÖµÚÒ»¸ö½Úµã*/
+	/*æ­¤æ—¶fastæŒ‡å‘å³åŠéƒ¨åˆ†ç¬¬ä¸€ä¸ªèŠ‚ç‚¹*/
 	while (fast)
 	{
 		stk.push(fast->val);
@@ -102,7 +98,7 @@ bool isPalindrom2(ListNode *head)
 	return true;
 }
 
-/*·½·¨Èý£º²»½èÖú¸¨Öú½á¹¹£¬¶ÔÁ´±í±¾ÉíÓÒ°ë²¿·Ö·´×ª£¬È»ºó±È½Ï*/
+/*æ–¹æ³•ä¸‰ï¼šä¸å€ŸåŠ©è¾…åŠ©ç»“æž„ï¼Œå¯¹é“¾è¡¨æœ¬èº«å³åŠéƒ¨åˆ†åè½¬ï¼Œç„¶åŽæ¯”è¾ƒ*/
 bool isPalindrom3(ListNode *head)
 {
 	if (!head)
@@ -113,8 +109,8 @@ bool isPalindrom3(ListNode *head)
 		n1 = n1->next;
 		n2 = n2->next;
 	}//while
-	n2 = n1->next; /*´ËÊ±qÖ¸ÏòÓÒ°ë²¿·ÖµÚÒ»¸ö½Úµã*/
-	/*×ó°ë²¿·ÖÁ´¿Õ*/
+	n2 = n1->next; /*æ­¤æ—¶qæŒ‡å‘å³åŠéƒ¨åˆ†ç¬¬ä¸€ä¸ªèŠ‚ç‚¹*/
+	/*å·¦åŠéƒ¨åˆ†é“¾ç©º*/
 	n1->next = NULL;
 	ListNode *n3 = NULL;
 	while (n2)
