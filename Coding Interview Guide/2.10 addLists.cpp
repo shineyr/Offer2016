@@ -34,6 +34,7 @@ ListNode *insert(ListNode *head, int val)
 	return head;
 }
 
+
 void display(ListNode *head)
 {
 	if (!head)
