@@ -38,6 +38,7 @@ string removeKZeros(string &str,int k)
 		}//else
 	}//for
 
+	/*判断是否连续k个0在整个字符串末尾*/
 	if (count == k)
 	{
 		str = beg == -1 ? str.substr(count + 1) : str.substr(0, beg) + str.substr(beg + count);
