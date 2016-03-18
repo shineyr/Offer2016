@@ -1,5 +1,5 @@
 /* 
- * 题目：链表中倒数第k个结点
+ * 面试题题15 ：链表中倒数第k个结点
  * 输入一个链表，输出该链表中倒数第k个结点。
  */
 
@@ -42,6 +42,31 @@ public:
 		}
 		return p;
 	}
+
+	/*只需要遍历一次的高效算法*/
+	ListNode *FindKthToTail2(ListNode* pListHead, unsigned int k)
+	{
+		if (pListHead == NULL || k == 0)
+			return NULL;
+
+		ListNode *pAhead = pListHead, *pBehind = pListHead;
+		for (int i = 0; i < k - 1; ++i)
+		{
+			if (pAhead->next != NULL)
+				pAhead = pAhead->next;
+			/*说明链表总长度小于k*/
+			else
+				return NULL;
+		}//for
+
+		while (pAhead->next)
+		{
+			pAhead = pAhead->next;
+			pBehind = pBehind->next;
+		}//while
+
+		return pBehind;
+	}
 };
 
 ListNode *insert(ListNode *head, int val)
@@ -73,9 +98,10 @@ int main()
 
 	Solution s;
 	ListNode *r = s.FindKthToTail(head , 2);
-
+	cout << r->val << endl;
 	
-
+	ListNode *r2 = s.FindKthToTail2(head, 2);
+	cout << r2->val << endl;
 	system("pause");
 	return 0;
 }
