@@ -143,7 +143,7 @@ int main()
 
 	display(head);
 
-	removeRep2(head);
+	head = removeRep2(head);
 	display(head);
 
 	deleteNodes(head);
