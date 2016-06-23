@@ -17,6 +17,32 @@ struct TreeNode {
 	TreeNode(int x):val(x),left(NULL),right(NULL){}
 };
 
+int strToInt(string str)
+{
+	if (str.empty())
+		return 0;
+	int len = str.length(), ret = 0;
+	for (int i = 0; i < len; ++i)
+	{
+		ret = ret*10 + (str[i] - '0');
+	}//for
+
+	return ret;
+}
+
+string intTostr(int n)
+{
+	string str = "";
+	while (n)
+	{
+		char c = ((n % 10) + '0');
+		str += c;
+		n /= 10;
+	}//while
+	reverse(str.begin(), str.end());
+	return str;
+}
+
 class Solution {
 public:
 	/**
@@ -81,11 +107,9 @@ public:
 	string serialize(TreeNode *root)
 	{
 		if (root == NULL)
-			return "#!";
+			return "";
 
-		char s[10];
-		sprintf(s, "%d", root->val);
-		string str = string(s) + "!";
+		string str = intTostr(root->val) + "!";
 		
 		queue<TreeNode *> nodes;
 		nodes.push(root);
@@ -96,9 +120,7 @@ public:
 
 			if (node->left != NULL)
 			{
-				char s[10];
-				sprintf(s, "%d", node->left->val);
-				str = str + string(s) + "!";
+				str = str + intTostr(node->left->val) + "!";
 				nodes.push(node->left);
 			}
 			else {
@@ -107,9 +129,7 @@ public:
 
 			if (node->right != NULL)
 			{
-				char s[10];
-				sprintf(s, "%d", node->right->val);
-				str = str + string(s) + "!";
+				str = str + intTostr(node->right->val) + "!";
 				nodes.push(node->right);
 			}
 			else {
@@ -140,9 +160,6 @@ public:
 			}//if
 		}//for
 
-		 /*±£´æÄ©Î²Öµ*/
-		vals.push_back(data.substr(beg, i - beg));
-
 		return BFSBuildTree(vals);
 	}
 
@@ -153,7 +170,7 @@ public:
 
 		int len = vals.size(), idx = 0;
 		string str = vals[idx++];
-		TreeNode *root = new TreeNode(atoi(str.c_str()));
+		TreeNode *root = new TreeNode(strToInt(str));
 
 		queue<TreeNode *> nodes;
 		nodes.push(root);
@@ -166,14 +183,14 @@ public:
 			string str = vals[idx++];
 			if (str != "#")
 			{
-				node->left = new TreeNode(atoi(str.c_str()));
+				node->left = new TreeNode(strToInt(str));
 				nodes.push(node->left);
 			}
 
 			str = vals[idx++];
 			if (str != "#")
 			{
-				node->right = new TreeNode(atoi(str.c_str()));
+				node->right = new TreeNode(strToInt(str));
 				nodes.push(node->right);
 			}//if
 		}//while
