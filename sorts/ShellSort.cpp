@@ -22,14 +22,20 @@ void ShellSort(int *A, int n)
 	while (d > 1)
 	{
 		d = (d + 1) / 2;
-		for (int i = 0; i < n - d; ++i)
-		{
-			if (A[i + d] < A[i])
+		for (int i = d; i < n; ++i)
+		{						
+			/*要插入的元素*/
+			int tmp = A[i];
+			/*从已有序序列尾向前寻找合适位置*/
+			int j = i-d;
+			for (; j >= 0; j-=d)
 			{
-				int tmp = A[i + d];
-				A[i + d] = A[i];
-				A[i] = tmp;
-			}//if
+				if (A[j] > tmp)
+					A[j + d] = A[j];
+				else
+					break;
+			}//for
+			A[j + d] = tmp;
 		}//for
 	}//while
 }
