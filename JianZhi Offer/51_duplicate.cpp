@@ -1,8 +1,8 @@
 /*
- * é¢è¯•é¢˜51ï¼šæ•°ç»„ä¸­é‡å¤çš„æ•°å­—
- * åœ¨ä¸€ä¸ªé•¿åº¦ä¸ºnçš„æ•°ç»„é‡Œçš„æ‰€æœ‰æ•°å­—éƒ½åœ¨0åˆ°n-1çš„èŒƒå›´å†…ã€‚ æ•°ç»„ä¸­æŸäº›æ•°å­—æ˜¯é‡å¤çš„ï¼Œ
- * ä½†ä¸çŸ¥é“æœ‰å‡ ä¸ªæ•°å­—æ˜¯é‡å¤çš„ã€‚ä¹Ÿä¸çŸ¥é“æ¯ä¸ªæ•°å­—é‡å¤å‡ æ¬¡ã€‚è¯·æ‰¾å‡ºæ•°ç»„ä¸­ä»»æ„ä¸€ä¸ªé‡å¤çš„æ•°å­—ã€‚ 
- * ä¾‹å¦‚ï¼Œå¦‚æœè¾“å…¥é•¿åº¦ä¸º7çš„æ•°ç»„{2,3,1,0,2,5,3}ï¼Œé‚£ä¹ˆå¯¹åº”çš„è¾“å‡ºæ˜¯é‡å¤çš„æ•°å­—2æˆ–è€…3ã€‚
+ * ÃæÊÔÌâ51£ºÊı×éÖĞÖØ¸´µÄÊı×Ö
+ * ÔÚÒ»¸ö³¤¶ÈÎªnµÄÊı×éÀïµÄËùÓĞÊı×Ö¶¼ÔÚ0µ½n-1µÄ·¶Î§ÄÚ¡£ Êı×éÖĞÄ³Ğ©Êı×ÖÊÇÖØ¸´µÄ£¬
+ * µ«²»ÖªµÀÓĞ¼¸¸öÊı×ÖÊÇÖØ¸´µÄ¡£Ò²²»ÖªµÀÃ¿¸öÊı×ÖÖØ¸´¼¸´Î¡£ÇëÕÒ³öÊı×éÖĞÈÎÒâÒ»¸öÖØ¸´µÄÊı×Ö¡£ 
+ * ÀıÈç£¬Èç¹ûÊäÈë³¤¶ÈÎª7µÄÊı×é{2,3,1,0,2,5,3}£¬ÄÇÃ´¶ÔÓ¦µÄÊä³öÊÇÖØ¸´µÄÊı×Ö2»òÕß3¡£
 */
 
 #include <iostream>
@@ -20,7 +20,7 @@ public:
 	//        duplication: (Output) the duplicated number in the array number
 	// Return value:       true if the input is valid, and there are some duplications in the array number
 	//                     otherwise false
-	//æ–¹æ³•ä¸€ï¼šé‡‡ç”¨å“ˆå¸Œçš„æ€æƒ³ï¼Œåˆ©ç”¨STLåº“çš„unordered_set
+	//·½·¨Ò»£º²ÉÓÃ¹şÏ£µÄË¼Ïë£¬ÀûÓÃSTL¿âµÄunordered_set
 	bool duplicate1(int numbers[], int length, int* duplication) {
 		if (length <= 0)
 			return false;
@@ -42,7 +42,7 @@ public:
 		return false;
 	}
 
-	//æ–¹æ³•äºŒï¼šåŸåœ°æ’åºæ³•
+	//·½·¨¶ş£ºÔ­µØÅÅĞò·¨ T(n)=O(n) S(n)=O(1)
 	bool duplicate(int numbers[], int length, int* duplication) {
 		if (numbers == NULL || length <= 0)
 			return false;
@@ -55,7 +55,7 @@ public:
 
 		for (int i = 0; i < length; ++i)
 		{
-			//ä¸åœ¨å¯¹åº”ä½ç½®åˆ™äº¤æ¢
+			//²»ÔÚ¶ÔÓ¦Î»ÖÃÔò½»»»
 			while (numbers[i] != i)
 			{
 				if (numbers[i] == numbers[numbers[i]])
@@ -73,16 +73,16 @@ public:
 	}
 };
 
-int main()
-{
-	int numbers[] = { 2, 3, 1, 0, 2, 5, 3 };
-	Solution s;
-	int duplication = 0;
-
-	if(s.duplicate(numbers, 7, &duplication))
-		cout << duplication << endl;
-
-	system("pause");
-	return 0;
-
-}
+//int main()
+//{
+//	int numbers[] = { 2, 3, 1, 0, 2, 5, 3 };
+//	Solution s;
+//	int duplication = 0;
+//
+//	if(s.duplicate(numbers, 7, &duplication))
+//		cout << duplication << endl;
+//
+//	system("pause");
+//	return 0;
+//
+//}
